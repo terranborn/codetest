@@ -62,7 +62,9 @@ mediaType: application/json
         body:
             application/json: !!null
             example: |
-                { "id":"1",
+                { "id":"1", //posting id requires for client to know what next id should be
+                            // and it probably require before adding one post to load all posts to chceck for next id
+                            // I would change that POST dont require id but it will return one after successful action
                   "title":"First title",
                   "content":"First content"}
                 }
