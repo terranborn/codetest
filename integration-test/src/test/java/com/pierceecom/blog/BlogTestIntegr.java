@@ -21,8 +21,8 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BlogTestIntegr {
 
-    private static final String POST_1 = "{\"id\":\"1\",\"title\":\"First title\",\"content\":\"First content\"}";
-    private static final String POST_2 = "{\"id\":\"2\",\"title\":\"Second title\",\"content\":\"Second content\"}";
+    private static final String POST_1 = "{\"content\":\"First content\",\"id\":\"1\",\"title\":\"First title\"}";
+    private static final String POST_2 = "{\"content\":\"Second content\",\"id\":\"2\",\"title\":\"Second title\"}";
     private static final String POSTS_URI = "http://localhost:8080/blog-web/posts/";
 
     
