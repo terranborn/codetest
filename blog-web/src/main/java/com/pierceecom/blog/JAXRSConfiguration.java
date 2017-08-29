@@ -1,7 +1,6 @@
 package com.pierceecom.blog;
 
-import com.pierceecom.blog.shared.NotFoundExceptionMapper;
-import com.pierceecom.blog.shared.NullKeyNotAllowedExceptionMapper;
+import com.pierceecom.blog.shared.ApplicationExceptionMapper;
 import com.pierceecom.blog.ws.RESTPostServiceImpl;
 
 import javax.ws.rs.ApplicationPath;
@@ -16,8 +15,7 @@ public class JAXRSConfiguration extends Application {
         HashSet<Class<?>> classes = new HashSet<>();
         classes.add(HelloPierceResource.class);
         classes.add(RESTPostServiceImpl.class);
-        classes.add(NullKeyNotAllowedExceptionMapper.class);
-        classes.add(NotFoundExceptionMapper.class);
+        classes.add(ApplicationExceptionMapper.class);
         return classes;
     }
 }

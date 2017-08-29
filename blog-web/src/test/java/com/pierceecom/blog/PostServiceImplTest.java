@@ -1,7 +1,7 @@
 package com.pierceecom.blog;
 
 import com.pierceecom.blog.ejb.impl.PostServiceImpl;
-import com.pierceecom.blog.shared.NullKeyNotAllowedException;
+import com.pierceecom.blog.shared.ApplicationException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +24,7 @@ public class PostServiceImplTest {
             service.addPost(null);
             assertTrue("should throw an exception", false);
         } catch (Exception e) {
-            if (!(e instanceof NullKeyNotAllowedException)) {
+            if (!(e instanceof ApplicationException)) {
                 assertTrue("should throw an BadRequestException", false);
             }
         }
@@ -36,7 +36,7 @@ public class PostServiceImplTest {
             service.getPost(null);
             assertTrue("should throw an exception", false);
         } catch (Exception e) {
-            if (!(e instanceof NullKeyNotAllowedException)) {
+            if (!(e instanceof ApplicationException)) {
                 assertTrue("should throw an BadRequestException", false);
             }
         }
@@ -48,7 +48,7 @@ public class PostServiceImplTest {
             service.remove(null);
             assertTrue("should throw an exception", false);
         } catch (Exception e) {
-            if (!(e instanceof NullKeyNotAllowedException)) {
+            if (!(e instanceof ApplicationException)) {
                 assertTrue("should throw an BadRequestException", false);
             }
         }
