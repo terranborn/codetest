@@ -61,18 +61,15 @@ public class JerseyTestIntegr {
     }
 
     private void DELETE(String id, int expectedResponse) {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(ENDPOINT).path(PATH).path(id);
-        Invocation.Builder request = target.request(MediaType.APPLICATION_JSON_TYPE);
+        Invocation.Builder request = prepareBuilder(ENDPOINT, PATH, id);
         Response response = request.delete();
 
         assertEquals(expectedResponse, response.getStatus());
     }
 
     private void POST(Post post, int expectedResponse) {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(ENDPOINT).path(PATH);
-        Invocation.Builder request = target.request(MediaType.APPLICATION_JSON_TYPE);
+        Invocation.Builder request = prepareBuilder(ENDPOINT, PATH);
+
         Response response = request.post(Entity.entity(post, MediaType.APPLICATION_JSON_TYPE));
 
         assertEquals(expectedResponse, response.getStatus());
@@ -80,9 +77,7 @@ public class JerseyTestIntegr {
     }
 
     private Post GET(String uri, int expectedResponse) {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(ENDPOINT).path(PATH).path(uri);
-        Invocation.Builder request = target.request(MediaType.APPLICATION_JSON_TYPE);
+        Invocation.Builder request = prepareBuilder(ENDPOINT, PATH, uri);
         Response response = request.get();
         assertEquals(expectedResponse, response.getStatus());
 
@@ -92,14 +87,28 @@ public class JerseyTestIntegr {
     }
 
     private List<Post> GET(int expectedResponse) {
-        Client client = ClientBuilder.newClient();
-        WebTarget target = client.target(ENDPOINT).path("posts");
-        Invocation.Builder request = target.request(MediaType.APPLICATION_JSON_TYPE);
+
+        Invocation.Builder request = prepareBuilder(ENDPOINT, PATH);
+
         Response response = request.get();
 
         List<Post> list = response.readEntity(List.class);
 
+        assertEquals(expectedResponse, response.getStatus());
 
         return list;
+    }
+
+    private Invocation.Builder prepareBuilder(String endpoint, String path) {
+        return prepareBuilder(endpoint, path, null);
+    }
+
+    private Invocation.Builder prepareBuilder(String endpoint, String path, String uri) {
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target(endpoint).path(path);
+        if (uri != null) {
+            target = target.path(uri);
+        }
+        return target.request(MediaType.APPLICATION_JSON_TYPE);
     }
 }
