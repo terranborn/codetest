@@ -196,6 +196,7 @@ Please follow the steps below:
 ================================================================================
 
 Please prepare test plan for such web service
+
 You decide how plan will look like and what tools/presentation to use
 
 
@@ -204,4 +205,5 @@ You decide how plan will look like and what tools/presentation to use
 ================================================================================
 
 Please create some automatic tests which resemble one of test plan test cases
+
 You are free to use any tools (bash scripts,python, etc)
